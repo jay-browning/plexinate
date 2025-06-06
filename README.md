@@ -1,6 +1,8 @@
 # 📺 Plexinate
 
-**Plexinate** is a desktop utility that automatically renames TV episode files to Plex-compatible formats using metadata from [The Movie Database (TMDB)](https://www.themoviedb.org/). It’s designed to clean up disorganized TV show folders and ensure perfect recognition in Plex Media Server.
+**Plexinate** is a desktop utility that automatically renames TV episode files to Plex-compatible formats using metadata
+from [The Movie Database (TMDB)](https://www.themoviedb.org/). It’s designed to clean up disorganized TV show folders
+and ensure perfect recognition in Plex Media Server.
 
 ---
 
@@ -18,12 +20,14 @@
 ## 🖼 Example
 
 Before:
+
 ```
 Show.Name.S01E01.avi
 Show.Name.S01E02.avi
 ```
 
 After:
+
 ```
 Show Name - S01E01 - Pilot.avi
 Show Name - S01E02 - The Next Episode.avi
@@ -49,10 +53,11 @@ pip install -r requirements.txt
 ### 3. Run the app
 
 ```bash
-python main.py
+python plexinate.py
 ```
 
 ### 4. Enter Your TMDB API Key
+
 - Sign up at [TMDB](https://www.themoviedb.org/) to get an API key.
 - The key will be stored locally in your home directory (e.g., `~/.tmdb_api_key`).
 
@@ -71,6 +76,7 @@ Use placeholders in your rename format:
 - `{ext}` – File extension
 
 Example:
+
 ```
 {show} - S{season}E{episode} - {title}.{ext}
 ```
