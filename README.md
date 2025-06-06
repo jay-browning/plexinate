@@ -1,86 +1,105 @@
-# TV Episode Renamer 🎬
+# 📺 Plexinate
 
-A Python desktop GUI tool to automatically rename TV show episode files in a format compatible with plex media server using data from [TMDB](https://www.themoviedb.org/). Designed for organized media libraries.
-
----
-
-## Features
-
-- Batch renames episode files using TMDB metadata.
-- Automatically detects show, season, and episode numbers.
-- Lets you preview changes before applying them.
-- Customizable filename templates (e.g., `{show} - S{season}E{episode} - {title}.{ext}`).
-- Renames season folders if applicable.
-- Built with `tkinter` and `CustomTkinter`.
+**Plexinate** is a desktop utility that automatically renames TV episode files to Plex-compatible formats using metadata from [The Movie Database (TMDB)](https://www.themoviedb.org/). It’s designed to clean up disorganized TV show folders and ensure perfect recognition in Plex Media Server.
 
 ---
 
-## Getting Started
+## ✨ Features
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/tv-episode-renamer.git
-cd tv-episode-renamer
+- 🔍 Searches TMDB for accurate episode titles
+- 🧠 Automatically detects show, season, and episode numbers
+- 📝 Customizable filename templates (e.g., `{show} - S{season}E{episode} - {title}.{ext}`)
+- 🎨 GUI interface with preview and batch-rename
+- 🧼 Skips files that don’t need renaming
+- ✅ Compatible with Plex naming conventions
+
+---
+
+## 🖼 Example
+
+Before:
+```
+Show.Name.S01E01.avi
+Show.Name.S01E02.avi
 ```
 
-### 2. Install Requirements
+After:
+```
+Show Name - S01E01 - Pilot.avi
+Show Name - S01E02 - The Next Episode.avi
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/yourusername/plexinate.git
+cd plexinate
+```
+
+### 2. Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run the App
+### 3. Run the app
+
 ```bash
 python main.py
 ```
 
-### 4. Enter Your TMDB API Key
-- Sign up at [TMDB](https://www.themoviedb.org/) to get an API key.
-- The key will be stored locally in your home directory (e.g., `~/.tmdb_api_key`).
+You'll be prompted to enter your [TMDB API key](https://www.themoviedb.org/settings/api) the first time you run the app.
 
 ---
 
-## Rename Template
+## 🔧 Customize Rename Template
 
-The default rename format is:
+Use placeholders in your rename format:
+
+- `{show}` – Series name
+- `{season}` – Season number (zero-padded)
+- `{episode}` – Episode number (zero-padded)
+- `{title}` – Episode title
+- `{ext}` – File extension
+
+Example:
 ```
 {show} - S{season}E{episode} - {title}.{ext}
 ```
 
-You can change it in the app using the **"Set Rename Template"** button.
-
 ---
 
-## Folder Structure
+## 📂 Supported File Structure
 
-The tool works best with folders structured like this:
+The app assumes TV shows are in a folder structure like:
 
 ```
-Show Name/
-├── Season 1/
-│   ├── Show.Name.S01E01.mkv
-│   ├── Show.Name.S01E02.mkv
+📁 TV Shows
+  └── 📁 Show Name
+      └── 📁 Season 1
+          ├── episode1.avi
+          └── episode2.avi
 ```
 
-It will detect and rename files and (optionally) season folders accordingly.
-
 ---
 
-## Dependencies
-
-- Python 3.9+
-- `requests`
-- `tkinter`
-
----
-
-## License
+## 🛡 License
 
 MIT License
 
 ---
 
-## Credits
+## 💬 Feedback / Contributions
 
-- [TMDB API](https://developers.themoviedb.org/)
-- Built with 💙 using Python + Tkinter
+Suggestions and pull requests welcome!  
+Just open an [issue](https://github.com/yourusername/plexinate/issues) or PR.
 
+---
+
+### 👤 Author
+
+[redbeardarr] – [@redbeardarr]((https://github.com/jay-browning))
