@@ -1,3 +1,5 @@
+# main.py
+
 import tkinter as tk
 from tkinter import messagebox
 from tmdb import TMDBClient, get_tmdb_api_key_gui
