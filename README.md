@@ -52,6 +52,10 @@ pip install -r requirements.txt
 python main.py
 ```
 
+### 4. Enter Your TMDB API Key
+- Sign up at [TMDB](https://www.themoviedb.org/) to get an API key.
+- The key will be stored locally in your home directory (e.g., `~/.tmdb_api_key`).
+
 You'll be prompted to enter your [TMDB API key](https://www.themoviedb.org/settings/api) the first time you run the app.
 
 ---
