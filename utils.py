@@ -1,12 +1,13 @@
 # utils.py
 
 import os
+import json
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 from extract import extract_info
 from tmdb import TMDBClient
 
-API_KEY_FILE = os.path.expanduser("~/.tmdb_api_key")
+CONFIG_PATH = os.path.expanduser("~/.plexinate_config.json")
 
 
 @dataclass
@@ -24,24 +25,17 @@ class RenameFolderResult:
     renamed_folder: str
 
 
-def save_api_key(key: str) -> None:
-    """Save the TMDB API key to a hidden file in the user's home directory."""
-    try:
-        with open(API_KEY_FILE, "w") as f:
-            f.write(key.strip())
-    except Exception as e:
-        print(f"Error saving API key: {e}")
+def save_api_key(api_key: str):
+    with open(CONFIG_PATH, "w") as f:
+        json.dump({"tmdb_api_key": api_key}, f)
 
 
-def load_api_key() -> str:
-    """Load the TMDB API key from the hidden file."""
-    try:
-        if os.path.exists(API_KEY_FILE):
-            with open(API_KEY_FILE, "r") as f:
-                return f.read().strip()
-    except Exception as e:
-        print(f"Error loading API key: {e}")
-    return ""
+def load_api_key():
+    if not os.path.exists(CONFIG_PATH):
+        return None
+    with open(CONFIG_PATH, "r") as f:
+        data = json.load(f)
+        return data.get("tmdb_api_key")
 
 
 def sanitize_filename(name: str) -> str:

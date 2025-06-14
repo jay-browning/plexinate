@@ -1,8 +1,7 @@
 # tmdb.py
 
 import requests
-import tkinter as tk
-from tkinter import simpledialog
+import customtkinter as ctk
 
 
 class TMDBClient:
@@ -39,6 +38,32 @@ class TMDBClient:
             return "Unknown Title"
 
 
-def get_tmdb_api_key_gui(root: tk.Tk) -> str | None:
-    """Prompt user with a dialog to enter their TMDB API key."""
-    return simpledialog.askstring("TMDB API Key", "Enter your TMDB API key:", parent=root)
+class TMDBApiKeyDialog(ctk.CTkToplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.title("Enter TMDB API Key")
+        self.geometry("400x160")
+        self.api_key = None
+        self.grab_set()
+
+        self.label = ctk.CTkLabel(self, text="Please enter your TMDB API Key:")
+        self.label.pack(pady=(20, 10), padx=20)
+
+        self.entry = ctk.CTkEntry(self, width=300)
+        self.entry.pack(pady=(0, 10), padx=20)
+        self.entry.focus()
+
+        self.button = ctk.CTkButton(self, text="Submit", command=self.on_submit)
+        self.button.pack(pady=(0, 20))
+
+        self.bind("<Return>", lambda event: self.on_submit())
+
+    def on_submit(self):
+        self.api_key = self.entry.get().strip()
+        self.destroy()
+
+
+def get_tmdb_api_key_gui(parent):
+    dialog = TMDBApiKeyDialog(parent)
+    parent.wait_window(dialog)
+    return dialog.api_key

@@ -1,34 +1,33 @@
 # plexinate.py
 
-import tkinter as tk
+import customtkinter as ctk
 from tkinter import messagebox
-from tmdb import TMDBClient, get_tmdb_api_key_gui
-from utils import load_api_key, save_api_key  # Make sure this import is present
+from tmdb import TMDBClient, get_tmdb_api_key_gui  # from new CTk-based dialog
+from utils import load_api_key, save_api_key
 from gui import EpisodeRenamerGUI
 
 
 def main():
-    root = tk.Tk()
-    root.withdraw()  # Hide main window while checking/loading API key
+    ctk.set_appearance_mode("System")
+    ctk.set_default_color_theme("blue")
 
-    # Try to load the API key first
+    root = ctk.CTk()
+    root.title("Plexinate")
+    root.geometry("1000x600")
+
     api_key = load_api_key()
-
-    # If not found, ask the user
     if not api_key:
         api_key = get_tmdb_api_key_gui(root)
         if api_key:
-            save_api_key(api_key.strip())
+            save_api_key(api_key)
 
-    # If still no API key, show error and exit
     if not api_key:
         messagebox.showerror("API Key Required", "The application cannot run without a TMDB API key.")
+        root.destroy()
         return
 
-    # Now run the app
-    tmdb_client = TMDBClient(api_key.strip())
-    root.deiconify()
-    EpisodeRenamerGUI(root, tmdb_client)
+    tmdb_client = TMDBClient(api_key)
+    app = EpisodeRenamerGUI(root, tmdb_client)
     root.mainloop()
 
 
